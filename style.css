@@ -1,0 +1,33 @@
+.allProducts {
+  border: 2px dashed red;
+  margin-bottom: 2px;
+}
+.delBtn {
+  float: right;
+  margin-right: 10px;
+  background-color: red;
+  border-radius: 5px red;
+  color: white;
+}
+.btnAdd {
+  height: 40px;
+  background-color: blue;
+  margin-bottom: 10px;
+  color: white;
+  width: 60px;
+}
+.editBtn {
+  float: right;
+  margin-right: 10px;
+  background-color: red;
+  border-radius: 5px red;
+  color: white;
+}
+#idInput {
+  width: 200px;
+  height: 40px;
+}
+#titleInput {
+  width: 200px;
+  height: 40px;
+}

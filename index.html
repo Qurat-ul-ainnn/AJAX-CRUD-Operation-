@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="jquery-3.7.1.min.js"></script>
+    <script src="index.js"></script>
+    <title>PRODUCT STORE</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Product API call</h1>
+      <div class="addProducts">
+        <label for="fname">Enter Title:</label><br />
+        <input type="text" id="titleInput" /><br />
+        <label for="lname">Enter Id:</label><br />
+        <input type="text" id="idInput" /><br /><br />
+      </div>
+      <button id="addBtn" class="btnAdd">Add</button>
+      <div id="products">Loading</div>
+    </div>
+
+    <div id="editProductModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="closeEditModal">&times;</span>
+        <h2>Edit Product</h2>
+        <input type="text" id="editTitle" placeholder="Title" />
+        <input type="text" id="editCompleted" placeholder="price" />
+        <button id="saveEditProduct">Save</button>
+      </div>
+    </div>
+  </body>
+</html>
