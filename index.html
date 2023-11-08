@@ -10,24 +10,24 @@
   </head>
   <body>
     <div class="container">
-      <h1>Product API call</h1>
+      <h1>Users API call</h1>
       <div class="addProducts">
-        <label for="fname">Enter Title:</label><br />
-        <input type="text" id="titleInput" /><br />
-        <label for="lname">Enter Id:</label><br />
-        <input type="text" id="idInput" /><br /><br />
+        <label for="fname">Enter name:</label><br />
+        <input type="text" id="nameInput" /><br />
+        <label for="email">Enter email:</label><br />
+        <input type="text" id="emailInput" /><br /><br />
       </div>
       <button id="addBtn" class="btnAdd">Add</button>
-      <div id="products">Loading</div>
+      <div id="users">Loading</div>
     </div>
 
-    <div id="editProductModal" class="modal">
+    <div id="editUserModal" class="modal">
       <div class="modal-content">
         <span class="close" id="closeEditModal">&times;</span>
-        <h2>Edit Product</h2>
-        <input type="text" id="editTitle" placeholder="Title" />
-        <input type="text" id="editCompleted" placeholder="price" />
-        <button id="saveEditProduct">Save</button>
+        <h2>Edit User</h2>
+        <input type="text" id="editName" placeholder="Title" />
+        <input type="text" id="editEmail" placeholder="price" />
+        <button id="saveEditUser">Save</button>
       </div>
     </div>
   </body>

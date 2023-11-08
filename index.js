@@ -1,106 +1,106 @@
 $(function () {
-  loadProducts();
-  $("#products").on("click", ".delBtn", handleDeleteProduct);
-  $("#addBtn").click(addProduct);
-  $("#products").on("click", ".edit-button", openEditProductModal);
-  $("#closeEditModal").click(closeEditProductModal);
-  $("#saveEditProduct").click(editProduct);
+  loadUsers();
+  $("#users").on("click", ".delBtn", handleDeleteUser);
+  $("#addBtn").click(addUsers);
+  $("#users").on("click", ".edit-button", openEditUserModal);
+  $("#closeEditModal").click(closeEditUserModal);
+  $("#saveEditUser").click(editUser);
 });
-function loadProducts() {
+function loadUsers() {
   $.ajax({
-    url: "https://jsonplaceholder.typicode.com/todos",
+    url: "https://fakestoreapi.com/users",
     method: "GET",
     error: function (response) {
-      var products = $("#products");
-      products.empty();
-      products.append(
+      var users = $("#users");
+      users.empty();
+      users.append(
         `<div class="error">Error in loading data, please try again</div>`
       );
     },
     success: function (response) {
       console.log(response);
-      var products = $("#products");
-      products.empty();
+      var users = $("#users");
+      users.empty();
       for (i = 0; i < response.length; i++) {
-        var product = response[i];
-        products.append(`<div class="allProducts" data-id="${product.id}">
+        var user = response[i];
+        users.append(`<div class="allUsers" data-id="${user.id}">
         
-        <h3>${product.title}</h3>
+        <h3>${user.name.firstname}</h3>
         <p>
-        <button class ='delBtn'>Delete</button>
-        <button class ='editBtn'>Edit</button>
-        ${product.completed}</p>
+        <button class ='delBtn' data-id="${user.id}">Delete</button>
+        <button class ='editBtn' data-id="${user.id}">Edit</button>
+        ${user.email}</p>
         </div>`);
       }
     },
   });
 }
 
-function addProduct() {
-  var title = $("#title").val();
-  var id = $("#completed").val();
+function addUsers() {
+  var name = $("#nameInput").val();
+  var email = $("#emailInput").val();
   $.ajax({
-    url: "https://jsonplaceholder.typicode.com/todos",
+    url: "https://fakestoreapi.com/users",
     method: "POST",
-    data: { title, id },
+    data: { name, email },
     success: function (response) {
       console.log(response);
-      $("#title").val("");
-      $("#completed").val("");
-      loadProducts();
+      $("#titleInput").val("");
+      $("#completedInput").val("");
+      loadUsers();
     },
   });
 }
-function openEditProductModal() {
+function openEditUserModal() {
   var btn = $(this);
   var id = btn.data("id");
-  $("#editProductModal").data("id", id);
-  $("#editTitle").val("");
-  $("#editCompleted").val("");
-  $("#editProductModal").show();
+  $("#editUserModal").data("id", id);
+  $("#editName").val("");
+  $("#editEmail").val("");
+  $("#editUserModal").show();
 }
 
-function closeEditProductModal() {
-  $("#editProductModal").hide();
+function closeEditUserModal() {
+  $("#editUserModal").hide();
 }
-function editProduct() {
-  var id = $("#editProductModal").data("id");
-  var title = $("#editTitle").val();
-  var completed = $("#editCompleted").val();
+function editUser() {
+  var id = $("#editUserModal").data("id");
+  var name = $("#editName").val();
+  var email = $("#editEmail").val();
 
   var updatedData = {
     id,
-    title,
-    completed,
+    name,
+    email,
   };
 
   $.ajax({
-    url: "https://jsonplaceholder.typicode.com/todos/" + id,
+    url: "https://fakestoreapi.com/users/" + id,
     method: "PUT",
     data: updatedData,
     success: function (response) {
       console.log(response);
 
-      var productElement = $(`.product[data-id="${id}"]`);
-      productElement.find("h3").text(title);
-      productElement.find("p").text(completed);
+      var userElement = $(`.allUsers[data-id="${id}"]`);
+      userElement.find("h3").text(name);
+      userElement.find("p").text(email);
 
-      $("#editProductModal").hide();
+      $("#editUserModal").hide();
     },
     error: function () {
-      console.log("Error in editing product");
+      console.log("Error in editing User");
     },
   });
 }
 
-function handleDeleteProduct() {
+function handleDeleteUser() {
   var btn = $(this);
-  var parentDiv = btn.closest(".allProducts");
+  var parentDiv = btn.closest(".allUsers");
   let id = parentDiv.attr("data-id");
   console.log(id);
   console.log("Delete clicked");
   $.ajax({
-    url: "https://jsonplaceholder.typicode.com/todos/" + id,
+    url: "https://fakestoreapi.com/users/" + id,
     method: "DELETE",
     success: function () {
       parentDiv.remove();
